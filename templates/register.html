@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP App | Register</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8360c3, #2ebf91);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .register-box {
+            background: #ffffff;
+            padding: 40px;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        h3 {
+            margin-bottom: 25px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2ebf91;
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background: #2ebf91;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #26a97d;
+        }
+
+        .message {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #2ebf91;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+        <h1>NLP App</h1>
+        <h3>Register Here</h3>
+
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <form action="/perform_registration" method="post">
+            <label>Name</label>
+            <input type="text" name="user_ka_name" required>
+
+            <label>Email</label>
+            <input type="email" name="user_ka_email" required>
+
+            <label>Password</label>
+            <input type="password" name="user_ka_password" required>
+
+            <input type="submit" value="Register">
+        </form>
+
+        <div class="login-link">
+            Already a member?
+            <a href="/">Login Here</a>
+        </div>
+    </div>
+
+</body>
+</html>

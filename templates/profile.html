@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 420px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            background: #667eea;
+            color: #fff;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome to NLP Dashboard</h2>
+        <p>Choose an NLP task to continue</p>
+
+        <ul>
+            <li><a href="/ner">🔍 Named Entity Recognition</a></li>
+            <li><a href="/sentiment">😊 Sentiment Analysis</a></li>
+            <li><a href="/abuse">🚫 Abuse Detection</a></li>
+        </ul>
+
+        <footer>
+            Built with Flask & NLP
+        </footer>
+    </div>
+
+</body>
+</html>

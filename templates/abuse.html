@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abuse Detection</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #232526, #414345);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 500px;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h2 {
+            color: #c0392b;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #c0392b;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #a93226;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .abusive {
+            color: #e74c3c;
+        }
+
+        .clean {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Abuse Detection</h2>
+
+        <form action="/perform_abuse" method="post">
+            <textarea name="abuse_text" placeholder="Enter text"></textarea>
+            <br>
+            <button type="submit">Check Abuse</button>
+        </form>
+
+        {% if result %}
+        <div class="result 
+            {% if 'Abusive' in result %}abusive
+            {% else %}clean{% endif %}">
+            Result: {{ result }}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

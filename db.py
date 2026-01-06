@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 import json
 
 class Database:
@@ -9,7 +10,8 @@ class Database:
             if email in users:
                 return 0
             else:
-                users[email] = [name,password]
+                hashed_password = generate_password_hash(password)
+                users[email] = [name,hashed_password]
 
         with open('users.json','w') as wf:
             json.dump(users,wf,indent=4)
@@ -20,7 +22,8 @@ class Database:
             users = json.load(rf)
 
             if email in users:
-                if users[email][1] == password:
+                stored_hash = users[email][1]
+                if check_password_hash(stored_hash, password):
                     return 1
                 else:
                     return 0

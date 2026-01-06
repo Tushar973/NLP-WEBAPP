@@ -17,6 +17,7 @@ The project demonstrates **end-to-end NLP engineering**, covering backend logic,
 
 - 🔐 **User Authentication**
   - Register & Login system
+  - Password Hashing Feature
   - Session-based protected routes
 
 - 😊 **Sentiment Analysis**

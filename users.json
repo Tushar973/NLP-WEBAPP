@@ -1,10 +1,14 @@
 {
     "tatta@gmail.com": [
         "Divyansh",
-        "147852369"    
+        "147852369"
     ],
     "bihari@gmail.com": [
         "shivam",
         "scrypt:32768:8:1$0aF5dS3tR9fm7nGr$b0fda5cf1275e441fa764abf0f73eb3002af0960de9f5e2a302c5bbf6874ad4f14d79bcd6eca2a94eac52c9e1d63c25e299d05b767a27cb74e891cff6e8d10bc"
+    ],
+    "tg20685@gmail.com": [
+        "Tushar",
+        "scrypt:32768:8:1$LdS9Lj3vGC8OW8Xk$a223450f8c6b0751fdb7a319ec1af58b1d0307dad9bbe335117db41c49437a8ea1762a74b5f319de58fb38dfde33118f7d04c2b7bebac303f4aa15210c21154a"
     ]
 }

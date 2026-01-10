@@ -1,15 +1,19 @@
 # 🧠 NLP Web Application  
-### Sentiment Analysis • Abuse Detection • Named Entity Recognition
+### Sentiment Analysis • Abuse Detection • Named Entity Recognition • Document Question Answering
 
-`Python 3.10+` • `Flask` • `spaCy` • `TextBlob` • `HTML/CSS`
+`Python 3.10+` • `Flask` • `spaCy` • `TextBlob` • `Groq API` • `HTML/CSS`
+
 
 ---
 
 ## 🚀 Overview
 
 Natural Language Processing (NLP) applications are widely used to analyze user-generated text, but many beginner systems lack proper structure, clarity, and usability.
-This project is a **full-stack NLP web application** that provides **Sentiment Analysis**, **Abuse/Toxicity Detection**, and **Named Entity Recognition (NER)** through a **secure Flask-based web interface** with session-based authentication.
+
+This project is a **full-stack NLP web application** that provides **Sentiment Analysis**, **Abuse/Toxicity Detection**, **Named Entity Recognition (NER)**, and **Document-based Question Answering** through a **secure Flask-based web interface** with session-based authentication.
+
 The project demonstrates **end-to-end NLP engineering**, covering backend logic, NLP inference, authentication, and frontend rendering.
+
 
 ---
 
@@ -32,6 +36,11 @@ The project demonstrates **end-to-end NLP engineering**, covering backend logic,
   - Extracts entities like **PERSON**, **ORG**, **GPE**, **DATE**
   - Powered by spaCy (`en_core_web_sm`)
 
+- 📄 **Document Question Answering**
+  - Allows users to upload documents (PDF / TXT / DOCX)
+  - Answers natural-language questions based on document content
+  - Implemented using transformer / LLM-based QA models via API
+
 - 🎨 **Modern UI**
   - Clean, responsive HTML/CSS pages
   - Gradient-based design for better UX
@@ -39,31 +48,43 @@ The project demonstrates **end-to-end NLP engineering**, covering backend logic,
 ---
 
 ## ⚙️ System Architecture
-User
-└── Browser (UI)
-└── Flask App
-├── Authentication Layer
-│ └── JSON-based user store
-│
-└── NLP API Layer
-├── Sentiment Analysis (TextBlob)
-├── Abuse Detection (Rule-based)
-└── NER (spaCy)
+
+User  
+└── Browser (UI)  
+    └── Flask App  
+        ├── Authentication Layer  
+        │   └── JSON-based user store  
+        │  
+        └── NLP API Layer  
+            ├── Sentiment Analysis (Groq API)  
+            ├── Abuse / Toxicity Detection (Groq API)  
+            ├── Named Entity Recognition (spaCy)  
+            └── Document Question Answering  
+                ├── Document Upload & Text Extraction  
+                ├── Text Chunking  
+                └── LLM-based QA Inference (Groq API)
+
 
 ---
-
 ## 🔍 NLP Processing Pipeline
 
-1. **Text Input**
-   - User submits text via the web interface
+1. **Text / Document Input**
+   - User submits text via the web interface  
+   - OR uploads a document (PDF / TXT / DOCX) for question answering  
 
 2. **NLP Processing**
-   - Sentiment → Polarity computation
-   - Abuse Detection → Keyword scanning
-   - NER → Entity extraction via spaCy
+   - Sentiment Analysis → Text classification via Groq API  
+   - Abuse Detection → Toxicity classification via Groq API  
+   - NER → Entity extraction using spaCy  
+   - Document Question Answering →  
+     - Text extraction from document  
+     - Text chunking  
+     - LLM-based question answering using Groq API  
 
 3. **Result Rendering**
-   - Output displayed instantly on the frontend
+   - Predictions and answers displayed instantly on the frontend
+
+
 
 ---
 
@@ -84,29 +105,39 @@ User
 | Component | Technology |
 |---------|-----------|
 | Backend | Python, Flask |
-| NLP | spaCy, TextBlob |
+| NLP | spaCy, TextBlob, Groq API |
 | Frontend | HTML, CSS |
 | Authentication | Flask Sessions |
 | Storage | JSON |
+| Document Processing | pdfplumber, python-docx |
 | Deployment Ready | Yes |
 
 ---
 
 ## 📁 Project Structure
+
 nlp-webapp/
 │
-├── templates/
-│ ├── login.html
-│ ├── register.html
-│ ├── profile.html
-│ ├── sentiment.html
-│ ├── abuse.html
-│ └── ner.html
+├── qa_utils/
+│   ├── extractor.py        # Document text extraction
+│   ├── chunker.py          # Text chunking logic
+│   └── qa_model.py         # LLM-based Question Answering
 │
-├── api.py # NLP logic
-├── app.py # Flask routes & sessions
-├── db.py # Authentication logic
-├── users.json # User data
+├── templates/
+│   ├── login.html
+│   ├── register.html
+│   ├── profile.html
+│   ├── sentiment.html
+│   ├── abuse.html
+│   ├── ner.html
+│   └── document-qa.html    # Document Question Answering UI
+│
+├── uploads/                # Temporarily stored documents
+│
+├── api.py                  # NLP logic
+├── app.py                  # Flask routes & sessions
+├── db.py                   # Authentication logic
+├── users.json              # User data
 ├── requirements.txt
 └── README.md
 
@@ -123,11 +154,9 @@ nlp-webapp/
 
 ## 🔮 Future Improvements
 
-1. Password hashing (bcrypt)
-2. Database integration (PostgreSQL / MongoDB)
-3. ML/DL-based abuse detection
-4. REST API endpoints
-5. Cloud deployment (Render / Railway / AWS)
+1. Database integration (PostgreSQL / MongoDB)
+2. REST API endpoints
+3. Cloud deployment (Render / Railway / AWS)
 
 ---
 
@@ -135,7 +164,7 @@ nlp-webapp/
 
 Tushar Kumar Gautam
 Electrical Engineering, IIT Roorkee
-Interests: NLP, Machine Learning, Backend Development, Deep Learning, Generative AI
+Interests: NLP, Machine Learning, Backend Development, Deep Learning, Generative AI, MLOPS
 
 
 

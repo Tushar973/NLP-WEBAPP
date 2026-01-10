@@ -22,10 +22,10 @@ The project demonstrates **end-to-end NLP engineering**, covering backend logic,
 
 - 😊 **Sentiment Analysis**
   - Classifies text as **Positive / Negative / Neutral**
-  - Implemented using TextBlob polarity scoring
+  - Implemented using Groq api
 
 - 🚫 **Abuse / Toxicity Detection**
-  - Detects offensive or toxic words
+  - Detects offensive or toxic words using Groq api
   - Returns `Abusive / Toxic` or `Clean`
 
 - 🏷️ **Named Entity Recognition (NER)**

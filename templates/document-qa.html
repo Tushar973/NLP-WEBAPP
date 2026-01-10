@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Question Answering</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            color: #444;
+        }
+
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f7f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .confidence {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .note {
+            font-size: 12px;
+            margin-top: 15px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📄 Document Question Answering</h2>
+
+    <form action="/perform_document_qa" method="POST" enctype="multipart/form-data">
+        <label>Upload Document (PDF / TXT / DOCX)</label>
+        <input type="file" name="document" required>
+
+        <label>Your Question</label>
+        <textarea name="question" placeholder="Ask something about the document..." required></textarea>
+
+        <button type="submit">Ask Question</button>
+    </form>
+
+    {% if answer %}
+    <div class="result">
+        <h3>✅ Answer</h3>
+        <p>{{ answer }}</p>
+
+        <div class="confidence">
+            <strong>Confidence:</strong> {{ confidence }}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="note">
+        Extractive QA • Transformer-based • Secure Processing
+    </div>
+</div>
+
+</body>
+</html>

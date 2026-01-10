@@ -2,6 +2,9 @@ from flask import Flask,render_template,request,redirect,session
 from db import Database
 import api
 from textblob import TextBlob 
+from api import document_qa
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -9,6 +12,15 @@ app.secret_key = "123456789"
 
 
 dbo = Database()
+
+UPLOAD_FOLDER = "uploads"
+ALLOWED_EXTENSIONS = {"pdf", "txt", "docx"}
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
@@ -103,6 +115,49 @@ def perform_abuse():
         return render_template('abuse.html', result=result)
     else:
         return redirect('/')
+    
+@app.route('/document_qa')
+def document_qa_page():
+    if session:
+        return render_template('document-qa.html')
+    else:
+        return redirect('/')
+
+@app.route('/perform_document_qa', methods=['post'])
+def perform_document_qa():
+    if session:
+        file = request.files.get('document')
+        question = request.form.get('question')
+
+        if not file or file.filename == '':
+            return render_template(
+                'document-qa.html',
+                error="Please upload a document"
+            )
+
+        if not allowed_file(file.filename):
+            return render_template(
+                'document-qa.html',
+                error="Unsupported file type"
+            )
+
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        file_type = filename.rsplit('.', 1)[1].lower()
+        result = document_qa(file_path, file_type, question)
+
+        os.remove(file_path)
+
+        return render_template(
+            'document-qa.html',
+            answer=result.get('answer'),
+            confidence=result.get('confidence')
+        )
+    else:
+        return redirect('/')
+
 
 
 app.run(debug=True)
